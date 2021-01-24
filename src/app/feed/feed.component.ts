@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import{Router} from '@angular/router';
 
 @Component({
   selector: 'app-feed',
@@ -7,12 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FeedComponent implements OnInit {
 
-  constructor() { }
+  constructor(private routed : Router) { 
+    if(localStorage.getItem("authenticationID")=='false'|| !localStorage.getItem("authenticationID"))
+    {
+      this.routed.navigate(['./login']);
+    }
+  }
 
   ngOnInit(): void {
   }
 
   onSubmit(){
-    console.log('onsubmit');
+    localStorage.setItem("authenticationID",'false');
+    this.routed.navigate(['./login']);
   }
 }
