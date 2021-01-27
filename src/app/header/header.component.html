@@ -1,0 +1,27 @@
+<header class="topbar">
+    <div class="navbar" >
+        <a href="./feed" ><span class="text-logo"> GOSSIP</span></a>
+       <span class="logout">
+        <button mat-button [matMenuTriggerFor]="menu" >
+            {{userName}}
+        </button>
+        <mat-menu #menu>
+            <button mat-menu-item (click)="home()">
+            <mat-icon>home</mat-icon>
+            <span>{{userName}}</span>
+            </button>
+            <button mat-menu-item (click)="createPost()" >
+            <mat-icon>addfile</mat-icon>
+            <span>createpost</span>
+            </button>
+            <button mat-menu-item (click)="logout()">
+            <mat-icon>logout</mat-icon>
+            <span>logout</span>
+            </button>
+        </mat-menu>
+    </span>
+    </div>
+</header>
+<body>
+
+</body>

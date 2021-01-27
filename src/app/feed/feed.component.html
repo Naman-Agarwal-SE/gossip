@@ -1,3 +1,9 @@
-<div >
-    <button mat-raised-button color="warn" (click)="onSubmit()">logout</button>
+<app-header></app-header>
+<body>
+<div class="tab" *ngFor="let post of allPost">
+    <div *ngIf= post.url>
+        <img src=post.url >
+    </div>
+
 </div>
+</body>

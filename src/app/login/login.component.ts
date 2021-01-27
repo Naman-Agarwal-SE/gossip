@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import{FormBuilder, FormGroup, Validator, Validators} from '@angular/forms';
+import{FormBuilder, FormGroup, Validators} from '@angular/forms';
 import{Router} from '@angular/router';
 import { PasswordValidationDirective } from '../password-validation.directive';
 
@@ -11,8 +11,8 @@ import { PasswordValidationDirective } from '../password-validation.directive';
 export class LoginComponent implements OnInit {
   public loginInput:FormGroup; 
   private users :object[]=[
-    {email:"namanagarwal@gmail.com",password:"Abcd@1234"},
-    {email:"alluser@gmail.com",password:"Abcd@1234"}
+    {userName:'Naman Agarwal',email:"namanagarwal@gmail.com",password:"Abcd@1234"},
+    {userName:'Gaurav Saxena',email:"gaurav@gmail.com",password:"Abcd@1234"}
   ]
   public authenticationId : boolean;
   constructor(private good: FormBuilder, private routed:Router) {}
@@ -33,6 +33,7 @@ export class LoginComponent implements OnInit {
         if(user['email']==x.emailId && user['password']==x.password){
           this.authenticationId=true;
           localStorage.setItem('authenticationID',JSON.stringify(this.authenticationId));
+          localStorage.setItem('userName',JSON.stringify(user['userName']));
           // console.log('routed');
           this.routed.navigate(['./feed']);
         }

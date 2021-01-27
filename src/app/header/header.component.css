@@ -1,3 +1,4 @@
+
 .text-logo{
     font-size: 40px;
     text-shadow: 2px 2px 5px red;
@@ -32,10 +33,11 @@ a{
     list-style: none;
     
 }
-
-.tab{
-    size: cover;
-    position: center center;
+body{
+    background-image: url('bg.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
     height: 100%;
     width: 100%;
     padding: 10% 0;

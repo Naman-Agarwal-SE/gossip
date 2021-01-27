@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import{Router} from '@angular/router';
+import {CreatepostServiceService} from '../createpost-service.service';
+import { Post } from '../Post';
+
 
 @Component({
   selector: 'app-feed',
@@ -8,7 +11,11 @@ import{Router} from '@angular/router';
 })
 export class FeedComponent implements OnInit {
 
-  constructor(private routed : Router) { 
+   userName : string;
+   allPost : Post[];
+
+  constructor(private routed : Router, private postService : CreatepostServiceService) { 
+    this.userName = JSON.parse( localStorage.getItem("userName")); 
     if(localStorage.getItem("authenticationID")=='false'|| !localStorage.getItem("authenticationID"))
     {
       this.routed.navigate(['./login']);
@@ -16,10 +23,10 @@ export class FeedComponent implements OnInit {
   }
 
   ngOnInit(): void {
-  }
+    this.allPost=this.postService.getpost();
+    for(let p of this.allPost){
 
-  onSubmit(){
-    localStorage.setItem("authenticationID",'false');
-    this.routed.navigate(['./login']);
+      console.log(p.url);
+    }
   }
 }

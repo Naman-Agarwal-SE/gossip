@@ -7,13 +7,20 @@ import { MaterialsModule } from './materials/materials.module';
 import { LoginComponent } from './login/login.component';
 import { FeedComponent } from './feed/feed.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { CreatePostComponent } from './create-post/create-post.component';
+import { HeaderComponent } from './header/header.component';
+import { EditPostComponent } from './edit-post/edit-post.component';
+
 
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    FeedComponent
+    FeedComponent,
+    CreatePostComponent,
+    HeaderComponent,
+    EditPostComponent
   ],
   imports: [
     BrowserModule,
