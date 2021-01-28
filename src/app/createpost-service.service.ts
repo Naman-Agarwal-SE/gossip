@@ -12,13 +12,17 @@ export class CreatepostServiceService {
 
   addPost(inputDescription : string , inputUrl?: string | null){
     this.name = JSON.parse(localStorage.getItem('userName'));
+    // console.log(this.createPost[(this.createPost.length)-1]);
     this.post={
       userName: this.name,
       url : inputUrl? inputUrl: null,
       description : inputDescription,
-      likes: 0
+      likes: 0,
+      postId:this.createPost.length?(this.createPost.length)+1:1,
+      NamanAgarwal:false,
+      GauravSaxena:false
     };
-    this.createPost.push(this.post);
+    this.createPost.unshift(this.post);
   }
   getpost(){
     return this.createPost;

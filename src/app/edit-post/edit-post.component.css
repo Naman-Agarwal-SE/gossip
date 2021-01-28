@@ -1,0 +1,28 @@
+.login-box { 
+    margin:  auto;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid rgba(0,0,0,.125);
+    display: -ms-flexbox;
+    -ms-flex-direction: column;
+    word-wrap: break-word;
+    border-radius: .25rem;
+    width: 400px;
+}
+body{
+    background-image: url('a.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    height: 100%;
+    width: 100%;
+    padding: 10% 0;
+    position: fixed;
+}
+div{
+    text-align: center;
+}

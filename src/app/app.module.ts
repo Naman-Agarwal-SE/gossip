@@ -10,6 +10,8 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { CreatePostComponent } from './create-post/create-post.component';
 import { HeaderComponent } from './header/header.component';
 import { EditPostComponent } from './edit-post/edit-post.component';
+import {MatBadgeModule} from '@angular/material/badge';
+import { DeleteDialogComponent } from './delete-dialog/delete-dialog.component';
 
 
 
@@ -20,12 +22,15 @@ import { EditPostComponent } from './edit-post/edit-post.component';
     FeedComponent,
     CreatePostComponent,
     HeaderComponent,
-    EditPostComponent
+    EditPostComponent,
+    DeleteDialogComponent
   ],
+  entryComponents:[DeleteDialogComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
     MaterialsModule,
+    MatBadgeModule,
     ReactiveFormsModule, 
     FormsModule
   ],

@@ -3,4 +3,7 @@ export interface Post{
     url:string|null;
     description:string;
     likes:number;
+    postId:number;
+    NamanAgarwal:boolean;
+    GauravSaxena:boolean;
 }

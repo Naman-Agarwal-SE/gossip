@@ -1,6 +1,7 @@
 <header class="topbar">
     <div class="navbar" >
-        <a href="./feed" ><span class="text-logo"> GOSSIP</span></a>
+        <!-- <a href="./feed" ><span class="text-logo"> GOSSIP</span></a> -->
+        <button mat-button (click)='navigate()' ><span class="text-logo"> GOSSIP</span></button>
        <span class="logout">
         <button mat-button [matMenuTriggerFor]="menu" >
             {{userName}}

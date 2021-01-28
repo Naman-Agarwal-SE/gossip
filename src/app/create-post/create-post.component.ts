@@ -33,7 +33,7 @@ export class CreatePostComponent implements OnInit {
   get description(){return this.postInput.get('description');}
   get url(){return this.postInput.get('url');}
   upload(){
-    if(this.url.value){
+    if(this.url.value && !this.url.hasError('url')){
       this.updatePostValue.addPost(this.description.value ,this.url.value);
     }
     else{

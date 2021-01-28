@@ -32,4 +32,7 @@ export class HeaderComponent implements OnInit {
   home(){
     this.routed.navigate(['./feed']);
   }
+  navigate(){
+    this.routed.navigate(['./feed']);
+  }
 }
