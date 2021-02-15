@@ -24,6 +24,7 @@ export class HeaderComponent implements OnInit {
   logout(){
     localStorage.setItem("authenticationID",'false');
     localStorage.setItem('userName','');
+    localStorage.setItem('userId','');
     this.routed.navigate(['./login']);
   }
   createPost(){

@@ -1,0 +1,84 @@
+<body>
+    <div class="text-logo">
+       GOSSIP
+    </div>
+    <div class="login-box">
+        <h1>SIGN-UP</h1>
+        <div>
+            <form [formGroup]="signUp">
+                <div>
+                    <mat-form-field>
+                        <input  matInput formControlName='userName' placeholder="User Name">
+                        <mat-icon matSuffix >account_circle </mat-icon>
+                        <mat-error *ngIf="userName.hasError('required')">
+                            email required
+                        </mat-error>
+                        
+                    </mat-form-field>
+                </div>
+                <div>
+                    <mat-form-field>
+                        <input type="email" matInput formControlName='emailId' placeholder="email">
+                        <mat-icon matSuffix > email</mat-icon>
+                        <mat-hint *ngIf="emailId.hasError('email')">
+                            enter in email format
+                        </mat-hint>
+                        <mat-error *ngIf="emailId.hasError('required')">
+                            email required
+                        </mat-error>
+                        
+                    </mat-form-field>
+                </div>
+                <div>
+                    <mat-form-field>
+                        <input matInput formControlName='password' placeholder="password" type="password">
+                        <mat-icon matSuffix >visibility_off</mat-icon>
+                        <mat-error *ngIf="password.hasError('required')"> 
+                            password required
+                        </mat-error>
+                        <mat-error *ngIf="password.hasError('minlength')">
+                            minimum Length is 6 character
+                        </mat-error>
+                        <mat-error *ngIf="password.hasError('maxlength')">
+                            maximum Length is 12 character
+                        </mat-error>
+                        <mat-error *ngIf="password.hasError('upperCase')">
+                            need one uppercase character
+                        </mat-error>
+                        <mat-error *ngIf="password.hasError('lowerCase')">
+                            need one lowercase character
+                        </mat-error>
+                        <mat-error *ngIf="password.hasError('numaric')">
+                            need one Numaric
+                        </mat-error>
+                        <mat-error *ngIf="password.hasError('specialCharacter')">
+                            need one specialCharacter
+                        </mat-error>
+                    </mat-form-field>    
+                </div>
+                <div>
+                    <mat-form-field>
+                        <input matInput placeholder="confirm password" formControlName='confirmPassword'[type]="hide ? 'password' : 'text'">
+                        <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                        <mat-error *ngIf="confirmPassword.hasError('required')"> 
+                            password required
+                        </mat-error>
+                        <mat-hint *ngIf="signUp.hasError('mismatch')">
+                            password not match
+                        </mat-hint>
+                    </mat-form-field>
+                </div>
+                <div>
+                    <button mat-raised-button color=primary [disabled]="signUp.invalid" (click)=submitSignUp()>Submit</button>
+                    <br><br>
+                </div>
+                <div>
+                    Back to Login 
+                    <br>
+                    <button mat-raised-button color=primary  (click)=login()>LOGIN</button>
+                    <br><br><br><br>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>

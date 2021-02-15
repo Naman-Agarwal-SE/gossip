@@ -4,6 +4,7 @@ import { Router ,ActivatedRoute} from '@angular/router';
 import { CreatepostServiceService } from '../createpost-service.service';
 import { PasswordValidationDirective } from '../password-validation.directive';
 import { Post } from '../Post';
+import { postTemp } from '../postTemp';
 
 @Component({
   selector: 'app-edit-post',
@@ -11,15 +12,17 @@ import { Post } from '../Post';
   styleUrls: ['./edit-post.component.css']
 })
 export class EditPostComponent implements OnInit {
-  private allPost:Post[];
+  private allPost:postTemp[];
   postInput: FormGroup;
-  receivedPostData :Post;
+  receivedPostData :postTemp;
   constructor( private routed:Router, private build : FormBuilder, private updatePostValue : CreatepostServiceService, private route : ActivatedRoute){ 
     
   }
 
   ngOnInit(): void {
-    this.allPost=this.updatePostValue.getpost();
+    this.updatePostValue.getpost().subscribe(data =>{
+      this.allPost=data;
+    });
     this.route.queryParams.subscribe(params=>{
       this.receivedPostData=JSON.parse(atob(params.post));
       // console.log(this.receivedPostData);
@@ -39,19 +42,30 @@ export class EditPostComponent implements OnInit {
   }
   get description(){return this.postInput.get('description');}
   get url(){return this.postInput.get('url');}
-  update(){
-    for(let eachPost of this.allPost)
-    {
-      if (eachPost.postId==this.receivedPostData.postId){
-        if(this.url.value && !this.url.hasError('url')){
-          eachPost.url=this.url.value;
-          eachPost.description=this.description.value;
-        }
-        else{
-          eachPost.description=this.description.value;
-        }
-      }
-    }
+  update=()=>{
+    let editPost={
+      _id: this.receivedPostData._id,
+      url:this.url.value,
+      description:this.description.value
+    };
+    // console.log(userLike);
+    this. updatePostValue.editPost(editPost).subscribe((data) =>{
+       console.log(data);
+    });
+
+
+    // for(let eachPost of this.allPost)
+    // {
+    //   // if (eachPost.postId==this.receivedPostData.postId){
+    //   //   if(this.url.value && !this.url.hasError('url')){
+    //   //     eachPost.url=this.url.value;
+    //   //     eachPost.description=this.description.value;
+    //   //   }
+    //   //   else{
+    //   //     eachPost.description=this.description.value;
+    //   //   }
+    //   // }
+    // }
     // if(this.url.value){
     //   let a =this.allPost.findIndex(posts=>{return  posts==this.receivedPostData;});
     //   console.log(a);

@@ -12,11 +12,13 @@ import {CreatepostServiceService } from '../createpost-service.service';
 })
 export class CreatePostComponent implements OnInit {
   postInput: FormGroup;
+  userId: string;
   constructor( private routed:Router, private build : FormBuilder, private updatePostValue : CreatepostServiceService){ 
     
   }
 
   ngOnInit(): void {
+    this.userId = JSON.parse( localStorage.getItem("userId"));
     if(localStorage.getItem("authenticationID")=='false'|| !localStorage.getItem("authenticationID"))
     {
       this.routed.navigate(['./login']);
@@ -32,13 +34,35 @@ export class CreatePostComponent implements OnInit {
   }
   get description(){return this.postInput.get('description');}
   get url(){return this.postInput.get('url');}
-  upload(){
+  upload=()=>{
     if(this.url.value && !this.url.hasError('url')){
-      this.updatePostValue.addPost(this.description.value ,this.url.value);
+      let addPostData={
+        userId: this.userId,
+        url:this.url.value,
+        description:this.description.value
+      };
+      this. updatePostValue.addPost(addPostData).subscribe((data) =>{
+        
+         console.log(data);
+      });
     }
     else{
-      this.updatePostValue.addPost(this.description.value );
+      let addPostData={
+        userId: this.userId,
+        description:this.description.value
+      };
+      this. updatePostValue.addPost(addPostData).subscribe((data) =>{
+         console.log(data);
+      });
     }
+    
+    // console.log(userLike);
+    // if(this.url.value && !this.url.hasError('url')){
+    //   this.updatePostValue.addPost(this.description.value ,this.url.value);
+    // }
+    // else{
+    //   this.updatePostValue.addPost(this.description.value );
+    // }
     this.routed.navigate(['./feed']);
   }
 }
