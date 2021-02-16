@@ -28,7 +28,7 @@ export class LoginComponent implements OnInit {
     }
 
     this.loginInput=this.good.group({
-      emailId:["",[Validators.required,Validators.email]],
+      emailId:["",[Validators.required,PasswordValidationDirective(/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,{email:true})]],
       password:["",[Validators.maxLength(12),Validators.minLength(6),Validators.required,PasswordValidationDirective(/[a-z]/,{lowerCase:true}),PasswordValidationDirective(/[A-Z]/,{upperCase:true}),PasswordValidationDirective(/[0-9]/, {numaric:true}),PasswordValidationDirective(/[!@#$%^&*(),.?":{}|<>]/,{specialCharacter:true})]]
     });
     

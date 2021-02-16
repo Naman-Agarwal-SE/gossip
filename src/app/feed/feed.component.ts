@@ -98,7 +98,7 @@ export class FeedComponent implements OnInit {
   singleClick(post:postTemp): void{
     this.timer = 0;
     this.prevent = false;
-    let delay = 600;
+    let delay = 400;
 
     this.timer = setTimeout(() => {
       if(!this.prevent){

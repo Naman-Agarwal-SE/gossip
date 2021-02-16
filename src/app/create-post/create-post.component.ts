@@ -44,6 +44,7 @@ export class CreatePostComponent implements OnInit {
       this. updatePostValue.addPost(addPostData).subscribe((data) =>{
         
          console.log(data);
+         this.routed.navigate(['./feed']);
       });
     }
     else{
@@ -53,6 +54,7 @@ export class CreatePostComponent implements OnInit {
       };
       this. updatePostValue.addPost(addPostData).subscribe((data) =>{
          console.log(data);
+         this.routed.navigate(['./feed']);
       });
     }
     
@@ -63,6 +65,6 @@ export class CreatePostComponent implements OnInit {
     // else{
     //   this.updatePostValue.addPost(this.description.value );
     // }
-    this.routed.navigate(['./feed']);
+    
   }
 }
