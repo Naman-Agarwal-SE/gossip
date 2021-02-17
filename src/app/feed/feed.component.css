@@ -45,4 +45,8 @@ a{
     max-width: 550px;
     margin: auto; 
     margin-top: 10px;
-  }
+    position: relative;
+}
+.img-set{
+    max-height: 550px;
+}

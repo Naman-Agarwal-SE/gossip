@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import{Router, ActivatedRoute} from '@angular/router';
+import { Subscription, timer } from 'rxjs';
 import {CreatepostServiceService} from '../createpost-service.service';
 import { DeleteDialogComponent } from '../delete-dialog/delete-dialog.component';
 import { LikedbyDialogComponent } from '../likedby-dialog/likedby-dialog.component';
@@ -15,12 +16,14 @@ import { postTemp } from '../postTemp';
 })
 export class FeedComponent implements OnInit {
 
-   userName : string;
-   allPost : postTemp[];
-    userId:number;
-    timer:any = 0;
-    delay = 200;
-    prevent = false;
+  userName : string;
+  allPost : postTemp[];
+  userId:number;
+  timer:any = 0;
+  delay = 200;
+  prevent = false;
+  subscriptionControl:Subscription;
+  public newPostHint:boolean=false;
 
    
 
@@ -34,9 +37,25 @@ export class FeedComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.loadPost();
+  }
+  loadPost=()=>{
+    this.newPostHint=false;
+    const newPostCheck = timer(1000,15000);
     this.postService.getpost().subscribe((data : postTemp[]) =>{
       // console.log(data);
       this.allPost=data;
+      window.scrollTo(0,0);
+      // console.log(this.allPost[0]['_id']);
+    });
+    this.subscriptionControl=newPostCheck.subscribe(res=>{
+      this.postService.getNewPost().subscribe((data) =>{
+        // console.log(data);
+        if(data > this.allPost[0]['_id']){
+          this.newPostHint=true;
+          this.subscriptionControl.unsubscribe();
+        }
+      });
     });
   }
   openDialog=(post: postTemp)=>{
@@ -64,7 +83,7 @@ export class FeedComponent implements OnInit {
           // console.log(data);
           this.allPost=data;
         });
-        console.log(data);
+        // console.log(data);
       });
     }
   }

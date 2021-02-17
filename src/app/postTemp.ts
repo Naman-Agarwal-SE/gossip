@@ -5,5 +5,7 @@ export interface postTemp{
     userId:string[]
     url:string|null;
     description:string;
-    userDoc:[{username:string}]
+    userDoc:[{username:string}],
+    city:String,
+    state:String
 }

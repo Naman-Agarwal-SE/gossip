@@ -51,6 +51,7 @@ export class EditPostComponent implements OnInit {
     // console.log(userLike);
     this. updatePostValue.editPost(editPost).subscribe((data) =>{
        console.log(data);
+       this.routed.navigate(['./feed']);
     });
 
 
@@ -79,6 +80,9 @@ export class EditPostComponent implements OnInit {
     //   });
     //   this.allPost[a].description=this.description.value;
     // }
+    
+  }
+  backToFeed=()=>{
     this.routed.navigate(['./feed']);
   }
 }

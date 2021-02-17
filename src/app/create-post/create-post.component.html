@@ -24,7 +24,12 @@
                     <br>
                 </div>
                 <div>
-                    <button mat-raised-button color=primary [disabled]="description.hasError('required')" (click)=upload()>upload</button>
+                    <button mat-raised-button color=primary [disabled]="description.hasError('required')||disable" (click)=upload()>upload</button>
+                    <br>
+                    <br>
+                </div>
+                <div>
+                    <button mat-raised-button color=primary (click)=backToFeed()>Back</button>
                     <br>
                     <br>
                 </div>

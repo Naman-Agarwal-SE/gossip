@@ -22,14 +22,14 @@ export class UserServiceService {
   }
   loginCheck=(userData:LoginDataSend):Observable<any>=>{
     let url =`${this.url}/users/signin`;
-    console.log(environment.name);
+    // console.log(environment.name);
     return this.http.post<any>(url,userData).pipe(
       catchError(this.handleError<any>('signup'))
     );
   }
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
-      console.error(error); // log to console instead
+      // console.error(error); // log to console instead
       this.toastr.error(error.error['message']);
       // Let the app keep running by returning an empty result.
       return of(result as T);

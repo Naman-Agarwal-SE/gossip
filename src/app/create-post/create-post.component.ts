@@ -12,7 +12,11 @@ import {CreatepostServiceService } from '../createpost-service.service';
 })
 export class CreatePostComponent implements OnInit {
   postInput: FormGroup;
-  userId: string;
+  public userId: string;
+  public ip:string;
+  public city:string;
+  public state:string;
+  public disable:boolean=false;
   constructor( private routed:Router, private build : FormBuilder, private updatePostValue : CreatepostServiceService){ 
     
   }
@@ -35,26 +39,49 @@ export class CreatePostComponent implements OnInit {
   get description(){return this.postInput.get('description');}
   get url(){return this.postInput.get('url');}
   upload=()=>{
+    this.disable=true
     if(this.url.value && !this.url.hasError('url')){
-      let addPostData={
-        userId: this.userId,
-        url:this.url.value,
-        description:this.description.value
-      };
-      this. updatePostValue.addPost(addPostData).subscribe((data) =>{
-        
-         console.log(data);
-         this.routed.navigate(['./feed']);
+      this.updatePostValue.getIp().subscribe((data) =>{
+        // console.log(data.ip);
+        this.ip=data.ip;
+        this.updatePostValue.getCity(this.ip).subscribe((data) =>{
+          // console.log(`city=${data.city},state=${data.regionName}`);
+          this.city=data.city;
+          this.state=data.region;
+          let addPostData={
+            userId: this.userId,
+            url:this.url.value,
+            description:this.description.value,
+            city:this.city,
+            state:this.state
+          };
+          //  console.log(addPostData);
+          this.updatePostValue.addPost(addPostData).subscribe((data) =>{
+            //  console.log(data);
+             this.routed.navigate(['./feed']);
+          });
+        });
       });
     }
     else{
-      let addPostData={
-        userId: this.userId,
-        description:this.description.value
-      };
-      this. updatePostValue.addPost(addPostData).subscribe((data) =>{
-         console.log(data);
-         this.routed.navigate(['./feed']);
+      this.updatePostValue.getIp().subscribe((data) =>{
+        // console.log(data.ip);
+        this.ip=data.ip;
+        this.updatePostValue.getCity(this.ip).subscribe((data) =>{
+          // console.log(`city=${data.city},state=${data.regionName}`);
+          this.city=data.city;
+          this.state=data.region;
+          let addPostData={
+            userId: this.userId,
+            description:this.description.value,
+            city:this.city,
+            state:this.state
+          };
+          this.updatePostValue.addPost(addPostData).subscribe((data) =>{
+            //  console.log(data);
+             this.routed.navigate(['./feed']);
+          });
+        });
       });
     }
     
@@ -66,5 +93,8 @@ export class CreatePostComponent implements OnInit {
     //   this.updatePostValue.addPost(this.description.value );
     // }
     
+  }
+  backToFeed=()=>{
+    this.routed.navigate(['./feed']);
   }
 }

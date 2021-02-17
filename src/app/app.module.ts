@@ -17,6 +17,7 @@ import { SignUpComponent } from './sign-up/sign-up.component';
 import {HttpClientModule} from '@angular/common/http';
 import {CreatepostServiceService} from './createpost-service.service';
 import { LikedbyDialogComponent } from './likedby-dialog/likedby-dialog.component';
+import { NewPostAvailableComponent } from './new-post-available/new-post-available.component';
 
 
 
@@ -31,6 +32,7 @@ import { LikedbyDialogComponent } from './likedby-dialog/likedby-dialog.componen
     DeleteDialogComponent,
     SignUpComponent,
     LikedbyDialogComponent,
+    NewPostAvailableComponent,
   ],
   entryComponents:[DeleteDialogComponent,LikedbyDialogComponent],
   imports: [
